@@ -1,7 +1,6 @@
 import { DataTable } from "mantine-datatable";
-import { Logo, edit2Icon, trashIcon } from "../assets";
 import { useEffect, useState } from "react";
-
+import { edit2Icon, trashIcon } from "../../../assets";
 const products = [
   {
     id: "#27544323",
@@ -159,7 +158,7 @@ const products = [
   },
 ];
 
-const Stock = () => {
+const StockList = () => {
   const PAGE_SIZE = 9;
   const [page, setPage] = useState(1);
   const [records, setRecords] = useState(products.slice(0, PAGE_SIZE));
@@ -170,78 +169,77 @@ const Stock = () => {
     setRecords(products.slice(from, to));
   }, [page]);
   return (
-    <div className="card mx-6 my-4 px-0 overflow-hidden">
-      <div className="flex justify-between px-6 pb-4">
-        <div className="flex flex-col ">
-          <span className="text-lg font-semibold text-gray-900">
-            Stock Product List
-          </span>
-          <span className="text-sm font-normal text-gray-500">
-            Lorem ipsum dolor sit amet consectetur. Risus in nulla faucibus
-            risus.
-          </span>
-        </div>
-        <button className="btn_primary">+ Add Product</button>
-      </div>
-      <div className="w-full h-[calc(100vh-250px)] overflow-y-auto">
-        <DataTable
-          rowStyle={{ height: "72px", color: "#667085" }}
-          records={records}
-          columns={[
-            {
-              accessor: "productName",
-              title: "Name",
-              render: ({ productName, productImage }) => (
-                <div className="flex items-center gap-3">
-                  <img
-                    className="h-[50px] w-[50px] object-cover rounded"
-                    src={productImage}
-                    alt=""
-                  />
-                  <span>{productName}</span>
-                </div>
-              ),
-            },
-            {
-              accessor: "productAddedDate",
-              title: "Product Added",
-              sortable: true,
-            },
+    <div className="w-full h-[calc(100vh-290px)] overflow-y-auto">
+      <DataTable
+        rowStyle={{ height: "72px", color: "#667085" }}
+        records={records}
+        columns={[
+          {
+            accessor: "productName",
+            title: "Name",
+            width: 250,
+            render: ({ productName, productImage }) => (
+              <div className="flex items-center gap-3">
+                <img
+                  className="h-[50px] w-[50px] object-cover rounded"
+                  src={productImage}
+                  alt=""
+                />
+                <span>{productName}</span>
+              </div>
+            ),
+          },
+          {
+            accessor: "productAddedDate",
+            title: "Product Added",
+            sortable: true,
+            // width: 200,
+          },
 
-            {
-              accessor: "stock",
-              title: "Stock",
-              render: ({ stock, productSold }) => (
-                <div className="flex items-center gap-5">
-                  <span>{stock}</span>
-                  <span className="py-1 px-4 border rounded-2xl text-sm font-semibold text-blue-700">
-                    {productSold} Left
-                  </span>
-                </div>
-              ),
-            },
+          {
+            accessor: "stock",
+            title: "Stock",
+            width: 250,
+            render: ({ stock, productSold }) => (
+              <div className="flex items-center gap-5">
+                <span>{stock}</span>
+                <span className="py-1 px-4 border rounded-2xl text-sm font-semibold text-blue-700">
+                  {productSold} Left
+                </span>
+              </div>
+            ),
+          },
 
-            { accessor: "purchasePrice", title: "Purchase", sortable: true },
-            { accessor: "sellingPrice", title: "Selling", sortable: true },
-            {
-              accessor: "id",
-              title: "",
-              render: (row) => (
-                <div className="flex items-center justify-center gap-6">
-                  <img src={trashIcon} alt="" />
-                  <img src={edit2Icon} alt="" />
-                </div>
-              ),
-            },
-          ]}
-          totalRecords={products.length}
-          recordsPerPage={PAGE_SIZE}
-          page={page}
-          onPageChange={(p) => setPage(p)}
-        />
-      </div>
+          {
+            accessor: "purchasePrice",
+            title: "Purchase",
+            // width: 200,
+            sortable: true,
+          },
+          {
+            accessor: "sellingPrice",
+            title: "Selling",
+            // width: 200,
+            sortable: true,
+          },
+          {
+            accessor: "id",
+            title: "",
+            render: (row) => (
+              <div className="flex items-center justify-center gap-6">
+                <img src={trashIcon} alt="" />
+                <img src={edit2Icon} alt="" />
+              </div>
+            ),
+          },
+        ]}
+        totalRecords={products.length}
+        recordsPerPage={PAGE_SIZE}
+        page={page}
+        onPageChange={(p) => setPage(p)}
+      />
     </div>
   );
 };
 
-export default Stock;
+export default StockList;

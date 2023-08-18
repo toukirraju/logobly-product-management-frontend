@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Logo, addIcon } from "../assets";
+import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
   const [toggle, setToggle] = useState(false);
@@ -62,8 +63,8 @@ const Sidebar = () => {
             <img src={addIcon} alt="" />
           </div>
           <li>
-            <a
-              href="#"
+            <NavLink
+              to="dashboard"
               className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 hover:text-blue-500 dark:hover:bg-gray-700 group"
             >
               <svg
@@ -92,11 +93,11 @@ const Sidebar = () => {
                 />
               </svg>
               <span className="ml-3">Dashboard</span>
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a
-              href="#"
+            <NavLink
+              to="stock"
               className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 hover:text-blue-500 dark:hover:bg-gray-700 group"
             >
               <svg
@@ -139,7 +140,7 @@ const Sidebar = () => {
                 />
               </svg>
               <span className="flex-1 ml-3 whitespace-nowrap">Stock</span>
-            </a>
+            </NavLink>
           </li>
           <li>
             <a

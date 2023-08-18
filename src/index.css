@@ -7,6 +7,6 @@
     @apply p-5 border rounded bg-gray-100 shadow-md shadow-gray-300;
   }
   .btn_primary {
-    @apply text-center font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 px-3;
+    @apply text-center font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 lg:px-3;
   }
 }
